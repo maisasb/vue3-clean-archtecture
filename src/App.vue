@@ -1,26 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h2>{{ getLabel("product.products") }}</h2>
+    <ListProducts />
+    <CreateProduct />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ListProducts from "./product/pages/ListProduct.vue";
+import CreateProduct from "./product/pages/CreateProduct.vue";
+import useLabel from "./labels/label.service";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
+  components: { ListProducts, CreateProduct },
+  setup() {
+    const { getLabel } = useLabel();
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    return {
+      getLabel,
+    };
+  },
+};
+</script>
